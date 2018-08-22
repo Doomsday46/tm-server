@@ -2,6 +2,7 @@ package com.doomsday.tmserver.service;
 
 import com.doomsday.tmserver.db.entity.TaskH2;
 import com.doomsday.tmserver.db.repository.TaskHibernateRepository;
+import com.doomsday.tmserver.model.InputObject;
 import com.doomsday.tmserver.model.Task;
 import com.doomsday.tmserver.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,9 @@ public class TaskHibernateService implements TaskService {
     private TaskHibernateRepository taskHibernateRepository;
 
     @Override
-    public void addTask(Task task, User user) {
-         taskHibernateRepository.save(new TaskH2(task.getDateTime(),task.getTitle(),task.getContext(),
-                                                 taskHibernateRepository.findByName(user.getLogin())));
+    public void addTask(InputObject inputObject) {
+         taskHibernateRepository.save(new TaskH2(inputObject.getDateTime(),inputObject.getTitle(),inputObject.getContext(),
+                                                 taskHibernateRepository.findByName(inputObject.getLogin())));
     }
 
     @Override

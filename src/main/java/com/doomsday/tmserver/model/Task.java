@@ -1,7 +1,10 @@
 package com.doomsday.tmserver.model;
 
+import org.springframework.stereotype.Component;
+
 import java.time.LocalDateTime;
 
+@Component
 public class Task {
     private LocalDateTime dateTime;
     private String title;

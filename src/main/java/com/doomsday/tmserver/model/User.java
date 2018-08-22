@@ -1,5 +1,8 @@
 package com.doomsday.tmserver.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class User {
 
     private String login;

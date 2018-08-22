@@ -1,6 +1,7 @@
 package com.doomsday.tmserver.service;
 
 import com.doomsday.tmserver.db.repository.TaskMongoRepository;
+import com.doomsday.tmserver.model.InputObject;
 import com.doomsday.tmserver.model.Task;
 import com.doomsday.tmserver.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ public class TaskMongoService implements TaskService {
 
 
     @Override
-    public void addTask(Task task, User user) {
+    public void addTask(InputObject inputObject) {
 
     }
 
