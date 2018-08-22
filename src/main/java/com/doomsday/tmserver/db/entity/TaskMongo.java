@@ -1,18 +1,24 @@
-package com.doomsday.tmserver.model;
+package com.doomsday.tmserver.db.entity;
+
+import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
 
-public class Task {
+public class TaskMongo {
+
+    @Id
+    private String id;
+
     private LocalDateTime dateTime;
     private String title;
     private String context;
 
 
-    public Task(){
+    public TaskMongo(){
 
     }
 
-    public Task(LocalDateTime dateTime, String title, String context) {
+    public TaskMongo(LocalDateTime dateTime, String title, String context) {
         this.dateTime = dateTime;
         this.title = title;
         this.context = context;

@@ -1,6 +1,6 @@
 package com.doomsday.tmserver.rest;
 
-import com.doomsday.tmserver.model.Task;
+import com.doomsday.tmserver.db.entity.TaskMongo;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,13 +9,16 @@ import java.util.List;
 @RequestMapping("/task")
 public class TaskController {
 
+
+
+
     @RequestMapping(method = RequestMethod.PUT)
-    public void addTask(@RequestBody Task task){
+    public void addTask(@RequestBody TaskMongo taskMongo){
 
     }
 
     @RequestMapping(value = "/{user}", method = RequestMethod.GET)
-    public List<Task> getTasks(@PathVariable String user){
+    public List<TaskMongo> getTasks(@PathVariable String user){
         return  null;
     }
 }
