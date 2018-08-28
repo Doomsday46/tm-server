@@ -1,8 +1,8 @@
 package com.doomsday.tmserver.rest;
 
+import com.doomsday.tmserver.model.Account;
 import com.doomsday.tmserver.model.InputObject;
 import com.doomsday.tmserver.model.Task;
-import com.doomsday.tmserver.model.User;
 import com.doomsday.tmserver.service.TaskHibernateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,19 +16,19 @@ public class TaskController {
     @Autowired
     private TaskHibernateService taskHibernateService;
 
-    @RequestMapping(method = RequestMethod.PUT)
+    @RequestMapping(value = "/add" ,method = RequestMethod.PUT)
     public void addTask(@RequestBody InputObject inputObject){
         taskHibernateService.addTask(inputObject);
     }
 
     @RequestMapping(value = "/delete/task/{id}")
-    public void deleteTask(@RequestBody User user, @PathVariable Long id){
+    public void deleteTask(@RequestBody Account account, @PathVariable Long id){
         taskHibernateService.deleteTask(id);
     }
 
 
-    @RequestMapping(value = "/getAllTasks}", method = RequestMethod.GET)
-    public List<Task> getTasks(@RequestBody User user){
-        return  taskHibernateService.getAllTask(user);
+    @RequestMapping(value = "/getAllTasks", method = RequestMethod.GET)
+    public List<Task> getTasks(@RequestBody Account account){
+        return  taskHibernateService.getAllTask(account);
     }
 }

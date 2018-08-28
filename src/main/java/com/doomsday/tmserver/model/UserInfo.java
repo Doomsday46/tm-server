@@ -2,16 +2,16 @@ package com.doomsday.tmserver.model;
 
 public class UserInfo {
 
-    private User user;
+    private Account account;
     private Long id;
 
-    public UserInfo(User user, Long id) {
-        this.user = user;
+    public UserInfo(Account account, Long id) {
+        this.account = account;
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public Account getAccount() {
+        return account;
     }
 
     public Long getId() {

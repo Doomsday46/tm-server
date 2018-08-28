@@ -1,13 +1,14 @@
 package com.doomsday.tmserver.db.entity;
 
-import org.springframework.data.annotation.Id;
+
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-
+@Entity
+@Table(name = "Task")
 public class TaskH2 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
     @Column
@@ -18,7 +19,7 @@ public class TaskH2 {
     private String context;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     public TaskH2(){

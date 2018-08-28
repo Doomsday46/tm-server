@@ -1,24 +1,17 @@
-package com.doomsday.tmserver.db.entity;
+package com.doomsday.tmserver.model;
 
-import javax.persistence.*;
+import org.springframework.stereotype.Component;
 
-@Entity
-@Table
-public class User {
+@Component
+public class Account {
 
-    @Id
-    @GeneratedValue
-    private Long id;
-    @Column
     private String login;
-    @Column
     private String password;
 
-    public User() {
+    public Account() {
     }
 
-    public User(Long id, String login, String password) {
-        this.id = id;
+    public Account(String login, String password) {
         this.login = login;
         this.password = password;
     }
@@ -31,12 +24,8 @@ public class User {
         this.password = password;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public Account(String login) {
+        this.login = login;
     }
 
     public String getLogin() {
