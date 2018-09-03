@@ -3,10 +3,8 @@ package com.doomsday.tmserver.rest;
 import com.doomsday.tmserver.model.Account;
 import com.doomsday.tmserver.service.AccountHibernateService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/account")
@@ -15,14 +13,10 @@ public class AccountController {
     @Autowired
     private AccountHibernateService accountHibernateService;
 
-    @RequestMapping(value = "/new", method = RequestMethod.PUT)
-    public void addAccount(@RequestBody Account account){
+    @RequestMapping(value = "/sign-up", method = RequestMethod.PUT)
+    @ResponseStatus(value = HttpStatus.OK)
+    public void signUp(@RequestBody Account account){
         accountHibernateService.addAccount(account);
-    }
-
-    @RequestMapping(value = "/delete", method = RequestMethod.PUT)
-    public void deleteAccount(@RequestBody Account account){
-        accountHibernateService.deleteAccount(account.getLogin());
     }
 
 }

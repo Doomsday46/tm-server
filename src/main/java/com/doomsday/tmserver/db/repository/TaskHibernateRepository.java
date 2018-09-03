@@ -1,7 +1,7 @@
 package com.doomsday.tmserver.db.repository;
 
 import com.doomsday.tmserver.db.entity.TaskH2;
-import com.doomsday.tmserver.db.entity.User;
+import com.doomsday.tmserver.db.entity.secure.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

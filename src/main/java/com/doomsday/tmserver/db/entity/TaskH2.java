@@ -2,6 +2,8 @@ package com.doomsday.tmserver.db.entity;
 
 
 
+import com.doomsday.tmserver.db.entity.secure.User;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 @Entity
@@ -11,10 +13,10 @@ public class TaskH2 {
     @GeneratedValue
     private Long id;
 
-    @Column
+    @Column(name = "dateCreate")
     private LocalDateTime dateTime;
-    @Column
-    private String title;
+    @Column(name = "dateEnd")
+    private LocalDateTime dateEnd;
     @Column
     private String context;
 
@@ -26,9 +28,9 @@ public class TaskH2 {
 
     }
 
-    public TaskH2(LocalDateTime dateTime, String title, String context, User user) {
+    public TaskH2(LocalDateTime dateTime, LocalDateTime dateEnd, String context, User user) {
         this.dateTime = dateTime;
-        this.title = title;
+        this.dateEnd = dateEnd;
         this.context = context;
         this.user = user;
     }
@@ -41,12 +43,12 @@ public class TaskH2 {
         this.dateTime = dateTime;
     }
 
-    public String getTitle() {
-        return title;
+    public LocalDateTime getDateEnd() {
+        return dateEnd;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setDateEnd(LocalDateTime dateEnd) {
+        this.dateEnd = dateEnd;
     }
 
     public String getContext() {

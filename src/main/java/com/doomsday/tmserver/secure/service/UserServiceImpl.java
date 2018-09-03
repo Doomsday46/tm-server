@@ -1,7 +1,7 @@
 package com.doomsday.tmserver.secure.service;
 
 import com.doomsday.tmserver.db.repository.UserHibernateRepository;
-import com.doomsday.tmserver.secure.entity.User;
+import com.doomsday.tmserver.db.entity.secure.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,13 +13,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUser(String login) {
-        com.doomsday.tmserver.db.entity.User userdb = userHibernateRepository.findByLogin(login);
-        return new User(userdb.getLogin(),userdb.getPassword());
+        User userdb = userHibernateRepository.findByUsername(login);
+        return userdb;
     }
 
     @Override
     public Boolean containsUser(String login) {
-        com.doomsday.tmserver.db.entity.User userdb = userHibernateRepository.findByLogin(login);
+        User userdb = userHibernateRepository.findByUsername(login);
         return userdb != null;
     }
 

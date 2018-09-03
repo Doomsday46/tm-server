@@ -6,14 +6,14 @@ public class InputObject {
 
     private String login;
 
-    private LocalDateTime dateTime;
-    private String title;
+    private LocalDateTime dateTimeTask;
+    private LocalDateTime dateOfCompletion;
     private String context;
 
-    public InputObject(String login, LocalDateTime dateTime, String title, String context) {
+    public InputObject(String login, LocalDateTime dateTime, LocalDateTime dateOfCompletion, String context) {
         this.login = login;
-        this.dateTime = dateTime;
-        this.title = title;
+        this.dateTimeTask = dateTime;
+        this.dateOfCompletion = dateOfCompletion;
         this.context = context;
     }
 
@@ -21,12 +21,12 @@ public class InputObject {
         return login;
     }
 
-    public LocalDateTime getDateTime() {
-        return dateTime;
+    public LocalDateTime getDateTimeTask() {
+        return dateTimeTask;
     }
 
-    public String getTitle() {
-        return title;
+    public LocalDateTime getDateOfCompletion() {
+        return dateOfCompletion;
     }
 
     public String getContext() {

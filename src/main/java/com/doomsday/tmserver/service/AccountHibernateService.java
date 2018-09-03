@@ -1,9 +1,10 @@
 package com.doomsday.tmserver.service;
 
-import com.doomsday.tmserver.db.entity.User;
+import com.doomsday.tmserver.db.entity.secure.User;
 import com.doomsday.tmserver.db.repository.UserHibernateRepository;
 import com.doomsday.tmserver.model.Account;
 import com.doomsday.tmserver.model.UserInfo;
+import com.doomsday.tmserver.secure.encryption.Encoders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +15,18 @@ import java.util.Optional;
 public class AccountHibernateService implements AccountService {
 
     @Autowired
+    private Encoders encoders;
+
+    @Autowired
     private UserHibernateRepository userHibernateRepository;
 
     @Override
     public void addAccount(Account account) {
         User user = new User();
-        user.setLogin(account.getLogin());
-        user.setPassword(account.getPassword());
+        user.setUsername(account.getLogin());
+        String encodePassword = encoders.userPasswordEncoder().encode(account.getPassword());
+        if(encoders.userPasswordEncoder().matches(account.getPassword(),encodePassword)) user.setPassword(encodePassword);
+        else throw new NullPointerException();
         userHibernateRepository.save(user);
     }
 
@@ -31,20 +37,20 @@ public class AccountHibernateService implements AccountService {
 
     @Override
     public void deleteAccount(String login) {
-        User user = userHibernateRepository.findByLogin(login);
+        User user = userHibernateRepository.findByUsername(login);
         userHibernateRepository.delete(user);
     }
 
     @Override
     public Account getAccount(Long id) {
         Optional<User> user = userHibernateRepository.findById(id);
-        return new Account(user.get().getLogin(),user.get().getPassword());
+        return new Account(user.get().getUsername(),user.get().getPassword());
     }
 
     @Override
     public Account getAccount(String login) {
-        User user = userHibernateRepository.findByLogin(login);
-        return new Account(user.getLogin(),user.getPassword());
+        User user = userHibernateRepository.findByUsername(login);
+        return new Account(user.getUsername(),user.getPassword());
     }
 
     @Override
@@ -71,7 +77,7 @@ public class AccountHibernateService implements AccountService {
     private List<Account> fillAccountList(List<User> users){
         List<Account> accountList = new ArrayList<>();
         for (User user:users) {
-            accountList.add(new Account(user.getLogin(),user.getPassword()));
+            accountList.add(new Account(user.getUsername(),user.getPassword()));
         }
         return accountList;
     }

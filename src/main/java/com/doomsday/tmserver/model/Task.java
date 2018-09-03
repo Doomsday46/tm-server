@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 @Component
 public class Task {
     private LocalDateTime dateTime;
-    private String title;
+    private LocalDateTime dateEnd;
     private String context;
 
 
@@ -15,9 +15,9 @@ public class Task {
 
     }
 
-    public Task(LocalDateTime dateTime, String title, String context) {
+    public Task(LocalDateTime dateTime, LocalDateTime dateEnd, String context) {
         this.dateTime = dateTime;
-        this.title = title;
+        this.dateEnd = dateEnd;
         this.context = context;
     }
 
@@ -29,12 +29,12 @@ public class Task {
         this.dateTime = dateTime;
     }
 
-    public String getTitle() {
-        return title;
+    public LocalDateTime getDateEnd() {
+        return dateEnd;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setDateEnd(LocalDateTime dateEnd) {
+        this.dateEnd = dateEnd;
     }
 
     public String getContext() {
