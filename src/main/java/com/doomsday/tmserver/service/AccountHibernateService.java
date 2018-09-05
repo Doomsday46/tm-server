@@ -25,7 +25,12 @@ public class AccountHibernateService implements AccountService {
         User user = new User();
         user.setUsername(account.getLogin());
         String encodePassword = encoders.userPasswordEncoder().encode(account.getPassword());
-        if(encoders.userPasswordEncoder().matches(account.getPassword(),encodePassword)) user.setPassword(encodePassword);
+        if(encoders.userPasswordEncoder().matches(account.getPassword(),encodePassword)) {
+            user.setPassword(encodePassword);
+            user.setAccountExpired(false);
+            user.setAccountLocked(false);
+            user.setCredentialsExpired(false);
+        }
         else throw new NullPointerException();
         userHibernateRepository.save(user);
     }

@@ -2,10 +2,16 @@ package com.doomsday.tmserver.model;
 
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 @Component
 public class Account {
 
+    @Column
     private String login;
+    @Column
     private String password;
 
     public Account() {
